@@ -12,14 +12,10 @@
         }
 
         body {
-            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background: #f8fafc;
             color: #0f172a;
             line-height: 1.5;
-        }
-
-       body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         }
 
         .container {
@@ -267,7 +263,6 @@
     function validateAndShowErrors() {
         let isValid = true;
 
-        // Имя
         const name = nameInput.value.trim();
         if (name === '') {
             nameError.textContent = 'Введите ФИО';
@@ -282,7 +277,6 @@
             nameInput.classList.remove('error');
         }
 
-        // Телефон
         const phone = phoneInput.value.trim();
         if (phone === '') {
             phoneError.textContent = 'Введите номер телефона';
@@ -297,7 +291,6 @@
             phoneInput.classList.remove('error');
         }
 
-        // Email
         const email = emailInput.value.trim();
         if (email === '') {
             emailError.textContent = 'Введите email';
@@ -312,7 +305,6 @@
             emailInput.classList.remove('error');
         }
 
-        // Тип объекта
         const objectType = objectTypeInput.value.trim();
         if (objectType === '') {
             objectTypeError.textContent = 'Укажите тип охраняемого объекта';
@@ -334,14 +326,10 @@
     form.onsubmit = async (e) => {
         e.preventDefault();
 
-        // Очищаем старые ошибки
         clearErrors();
 
-        // Проверяем и показываем ошибки
-        const isValid = validateAndShowErrors();
-
-        if (!isValid) {
-            statusDiv.innerHTML = 'Заполните все обязательные поля';
+        if (!validateAndShowErrors()) {
+            statusDiv.innerHTML = '❌ Заполните все обязательные поля';
             statusDiv.style.background = '#fee2e2';
             statusDiv.style.color = '#991b1b';
             return;
@@ -353,33 +341,35 @@
         const objectType = objectTypeInput.value.trim();
         const comment = document.getElementById('comment').value;
 
-        statusDiv.innerHTML = 'Отправка...';
+        statusDiv.innerHTML = '⏳ Отправка...';
         statusDiv.style.background = '#eef2ff';
         statusDiv.style.color = '#1e3a8a';
 
         const payload = { name, phone, email, objectType, comment };
 
-        fetch(API_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },  // ← ЭТА СТРОКА
-    body: JSON.stringify(payload)
-        })
+        try {
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
 
             const data = await response.json();
 
             if (response.ok) {
-                statusDiv.innerHTML = 'Заявка принята! Мы свяжемся с вами.';
+                statusDiv.innerHTML = '✅ Заявка принята! Мы свяжемся с вами.';
                 statusDiv.style.background = '#dcfce7';
                 statusDiv.style.color = '#166534';
                 form.reset();
                 clearErrors();
             } else {
-                statusDiv.innerHTML = `Ошибка: ${data.error || 'Попробуйте позже'}`;
+                statusDiv.innerHTML = `❌ Ошибка: ${data.error || 'Попробуйте позже'}`;
                 statusDiv.style.background = '#fee2e2';
                 statusDiv.style.color = '#991b1b';
             }
         } catch (error) {
-            statusDiv.innerHTML = 'Не удалось соединиться с сервером.';
+            console.error('Ошибка:', error);
+            statusDiv.innerHTML = '❌ Не удалось соединиться с сервером. Проверьте интернет.';
             statusDiv.style.background = '#fee2e2';
             statusDiv.style.color = '#991b1b';
         }
