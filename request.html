@@ -359,12 +359,6 @@
 
         const payload = { name, phone, email, objectType, comment };
 
-        try {
-            const response = await fetch(API_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
 
             const data = await response.json();
 
