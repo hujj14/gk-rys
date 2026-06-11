@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>ГК-РЫСЬ | Комплексная безопасность</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -17,9 +18,8 @@
             color: #1a2a3a;
             line-height: 1.5;
             scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
         }
-
-        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap');
 
         @keyframes fadeInUp {
             from {
@@ -63,7 +63,7 @@
             text-decoration: none;
         }
         .logo span {
-            color: #2c5f5f;
+            color: #000000;
         }
 
         .nav-links {
@@ -76,7 +76,7 @@
             background: none;
             border: none;
             font-weight: 500;
-            color: #334155;
+            color: #3e444d;
             transition: all 0.3s ease;
             font-size: 16px;
             cursor: pointer;
@@ -91,7 +91,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: #2c5f5f;
+            background: #000000;
             transition: width 0.3s ease;
         }
 
@@ -100,50 +100,55 @@
         }
 
         .nav-link:hover {
-            color: #2c5f5f;
+            color: #000000;
         }
 
-        /* Герой */
+        /* ГЕРОЙ-СЕКЦИЯ — ФОТОГРАФИЯ + ЗАТЕМНЕНИЕ */
         .hero {
-            position: relative;
-            text-align: center;
-            padding: 120px 32px;
-            background: linear-gradient(135deg, #1a4a4a 0%, #2c5f5f 50%, #1a4a4a 100%);
-            color: white;
-            overflow: hidden;
-        }
+    position: relative;
+    text-align: center;
+    padding: 100px 32px;
+    background-image: url('https://images.unsplash.com/photo-1485230405346-71acb9518d9c?q=80&w=1494&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-position: center 50%;
+    color: white;
+    overflow: hidden;
+    min-height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-        .hero-bg-shape {
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 600px;
-            height: 600px;
-            background: rgba(44,95,95,0.15);
-            border-radius: 50%;
-            filter: blur(80px);
-            z-index: 0;
-        }
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 1;
+}
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            margin: 0 auto;
-        }
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
 
         .hero h1 {
             font-size: 3.8rem;
             font-weight: 700;
             margin-bottom: 20px;
             line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .hero p {
             font-size: 1.2rem;
             max-width: 700px;
             margin: 0 auto 32px;
-            opacity: 0.9;
+            opacity: 0.95;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
 
         .btn-primary {
@@ -156,13 +161,13 @@
             border-radius: 40px;
             cursor: pointer;
             transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
             background: #e8f0f0;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
         }
 
         .container {
@@ -194,7 +199,7 @@
         .stat-item h3 {
             font-size: 2.8rem;
             font-weight: 700;
-            color: #2c5f5f;
+            color: #000000;
             margin-bottom: 8px;
         }
 
@@ -224,7 +229,7 @@
             transform: translateX(-50%);
             width: 60px;
             height: 3px;
-            background: #2c5f5f;
+            background: #000000;
             border-radius: 2px;
         }
 
@@ -262,7 +267,7 @@
         
         .object-list li:before {
             content: "▹";
-            color: #2c5f5f;
+            color: #000000;
             font-size: 14px;
         }
 
@@ -270,34 +275,9 @@
             border-bottom: none;
         }
 
-        /* Клиенты (если оставил блок) */
-        .client-card {
-            margin-bottom: 20px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid #f1f5f9;
-        }
-
-        .client-card:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .client-name {
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: #1a2a3a;
-            margin-bottom: 6px;
-        }
-
-        .client-desc {
-            color: #64748b;
-            font-size: 0.9rem;
-        }
-
         footer {
             width: 100%;
-            background: #1a2a3a;
+            background: #2b2f33;
             color: #94a3b8;
             padding: 48px 0 32px;
             margin-top: 60px;
@@ -332,7 +312,7 @@
                 padding: 15px 20px;
             }
             .hero {
-                padding: 80px 20px;
+                padding: 60px 20px;
             }
             .hero h1 {
                 font-size: 2rem;
@@ -352,10 +332,10 @@
 
         @media (max-width: 480px) {
             .hero h1 {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
             }
             .btn-primary {
-                padding: 12px 24px;
+                padding: 10px 20px;
                 font-size: 0.9rem;
             }
         }
@@ -365,7 +345,7 @@
 
 <header class="navbar">
     <div class="nav-inner">
-        <a href="/" class="logo">ГК-<span>РЫСЬ</span></a>
+        <a href="index.html" class="logo">ГК-<span>РЫСЬ</span></a>
         <div class="nav-links">
             <button class="nav-link" onclick="window.location.href='request.html'">Оставить заявку</button>
             <button class="nav-link" onclick="document.getElementById('whatWeProtect').scrollIntoView({behavior: 'smooth', block: 'start'}); return false;">Что охраняем</button>
@@ -374,16 +354,13 @@
 </header>
 
 <section class="hero">
-    <div class="hero-bg-shape"></div>
     <div class="hero-content">
         <h1>Безопасность бизнеса<br>нового поколения</h1>
         <p>Комплексная охрана высотных зданий, бизнес-центров и промышленных объектов.</p>
-        <button class="btn-primary" onclick="window.location.href='/request.html'">Рассчитать стоимость</button>
     </div>
 </section>
 
 <main class="container">
-    <!-- Блок статистики -->
     <div class="stats-section fade-up">
         <div class="stats-grid">
             <div class="stat-item">
@@ -401,12 +378,10 @@
         </div>
     </div>
 
-    <!-- ЗАГОЛОВОК "ЧТО ОХРАНЯЕМ" С ID ДЛЯ СКРОЛЛА -->
     <div class="section-header fade-up" style="animation-delay: 0.1s;" id="whatWeProtect">
         <h2>Что охраняем</h2>
     </div>
 
-    <!-- 2 колонки с объектами -->
     <div class="two-columns fade-up" style="animation-delay: 0.2s;">
         <div class="col">
             <ul class="object-list">
@@ -443,7 +418,6 @@
 </footer>
 
 <script>
-    // Счётчики (все останавливаются одновременно через 2 секунды)
     function startCounting() {
         const startTime = performance.now();
         const duration = 2000;
@@ -492,7 +466,6 @@
 
     if (statsSection) observer.observe(statsSection);
 
-    // Анимация появления блоков
     const fadeElements = document.querySelectorAll('.fade-up');
     const fadeObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
